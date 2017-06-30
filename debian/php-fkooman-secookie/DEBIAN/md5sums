@@ -1,0 +1,15 @@
+83b2966114c418e1ac3e88e0f3d95c45  usr/share/doc/php-fkooman-secookie/CHANGES.md
+29b6a76c924ace4735e9caec247265df  usr/share/doc/php-fkooman-secookie/LICENSE
+145be20a1afd0ed4d87d9decea0fbe8a  usr/share/doc/php-fkooman-secookie/README.md.gz
+97a620727f37af4ef9898ba11cd75582  usr/share/doc/php-fkooman-secookie/changelog.Debian.gz
+d6a08ec94d42ce6d04430aa47fc52a2a  usr/share/doc/php-fkooman-secookie/changelog.gz
+7ca40ae80691e8f8a3eade1f29f806ce  usr/share/doc/php-fkooman-secookie/copyright
+4788d924737b696c510c497c78ad7906  usr/share/doc/php-fkooman-secookie/phpunit.xml.dist
+1bda3b9c7d3c3cdda25498926b6ff050  usr/share/php/fkooman/SeCookie/Cookie.php
+d9813b3fcaf6ee2c53f1ba5472ffe162  usr/share/php/fkooman/SeCookie/CookieInterface.php
+63cfdcbabb02b6f575772e50a420df30  usr/share/php/fkooman/SeCookie/Exception/SessionException.php
+498319b02649e25468902d384beda2e8  usr/share/php/fkooman/SeCookie/HeaderInterface.php
+a43a17ffd9d27dcc274bfb8107e854ca  usr/share/php/fkooman/SeCookie/PhpHeader.php
+af4f52ed1463c490e66d5c015118e8f0  usr/share/php/fkooman/SeCookie/Session.php
+115341d4f6424e5daa91df37de5a4818  usr/share/php/fkooman/SeCookie/SessionInterface.php
+b51f57adf287de8d4e8272bcd5fc4fee  usr/share/php/fkooman/SeCookie/autoload.php

@@ -1,0 +1,11 @@
+php-secookie (1.0.0-1) stable; urgency=medium
+
+  * new upstream release
+
+ -- Gijs Molenaar (launchpad ppa build key) <gijs@pythonic.nl>  Fri, 30 Jun 2017 14:29:42 +0200
+
+php-secookie (0.1.0-1) stable; urgency=medium
+
+  * initial release
+
+ -- Gijs Molenaar (launchpad ppa build key) <gijs@pythonic.nl>  Fri, 16 Jun 2017 14:44:06 +0000

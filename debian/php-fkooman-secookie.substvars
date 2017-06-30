@@ -1,0 +1,6 @@
+phpcomposer:name=fkooman/secookie
+phpcomposer:description=Secure Cookie and Session library for PHP
+phpcomposer:Debian-require=php-common, php-common
+phpcomposer:Debian-require-dev=phpunit (>= 5.7), phpunit (<< 6~~)
+misc:Depends=
+misc:Pre-Depends=
