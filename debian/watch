@@ -2,5 +2,5 @@
 version=3
 
 opts=filenamemangle=s/.+\/v?(\d\S+)\.tar\.gz/php-secookie-$1\.tar\.gz/ \
-  https://github.com/fkooman/php-secookie/tags .*/?(\d\S+)\.tar\.gz
+  https://github.com/fkooman/php-secookie/tags .*/v?(\d\S+)\.tar\.gz
 
