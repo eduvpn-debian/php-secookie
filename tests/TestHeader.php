@@ -31,6 +31,11 @@ class TestHeader implements HeaderInterface
     /** @var array */
     private $headerList = [];
 
+    /**
+     * @param mixed $name
+     *
+     * @return void
+     */
     public function remove($name)
     {
         foreach ($this->headerList as $k => $v) {
@@ -40,6 +45,12 @@ class TestHeader implements HeaderInterface
         }
     }
 
+    /**
+     * @param mixed $header
+     * @param mixed $override
+     *
+     * @return void
+     */
     public function set($header, $override = false)
     {
         $this->headerList[] = $header;

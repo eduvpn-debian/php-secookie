@@ -24,6 +24,7 @@
 
 namespace fkooman\SeCookie\Tests;
 
+use fkooman\SeCookie\Cookie;
 use fkooman\SeCookie\Session;
 use PHPUnit_Framework_TestCase;
 
@@ -31,11 +32,13 @@ class SessionTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @runInSeparateProcess
+     *
+     * @return void
      */
     public function testSimple()
     {
         $t = new TestHeader();
-        $c = new Session([], $t);
+        $c = new Session([], new Cookie([], $t));
         $c->set('foo', 'bar');
         $this->assertSame(
             [
@@ -47,11 +50,13 @@ class SessionTest extends PHPUnit_Framework_TestCase
 
     /**
      * @runInSeparateProcess
+     *
+     * @return void
      */
     public function testSessionName()
     {
         $t = new TestHeader();
-        $c = new Session(['SessionName' => 'SID'], $t);
+        $c = new Session(['SessionName' => 'SID'], new Cookie([], $t));
         $c->set('foo', 'bar');
         $this->assertSame(
             [
@@ -63,11 +68,13 @@ class SessionTest extends PHPUnit_Framework_TestCase
 
     /**
      * @runInSeparateProcess
+     *
+     * @return void
      */
     public function testRegenerate()
     {
         $t = new TestHeader();
-        $c = new Session([], $t);
+        $c = new Session([], new Cookie([], $t));
         $sessionId = $c->id();
         $this->assertSame(
             [
@@ -87,8 +94,10 @@ class SessionTest extends PHPUnit_Framework_TestCase
 
     /**
      * @runInSeparateProcess
-     * @expectedException \fkooman\SeCookie\Exception\SessionException
+     * @expectedException        \fkooman\SeCookie\Exception\SessionException
      * @expectedExceptionMessage session bound to DomainBinding, we got "www.example.org", but expected "www.example.com"
+     *
+     * @return void
      */
     public function testDomainBinding()
     {
@@ -97,20 +106,22 @@ class SessionTest extends PHPUnit_Framework_TestCase
             [
                 'DomainBinding' => 'www.example.org',
             ],
-            $t
+            new Cookie([], $t)
         );
         $c = new Session(
             [
                 'DomainBinding' => 'www.example.com',
             ],
-            $t
+            new Cookie([], $t)
         );
     }
 
     /**
      * @runInSeparateProcess
-     * @expectedException \fkooman\SeCookie\Exception\SessionException
+     * @expectedException        \fkooman\SeCookie\Exception\SessionException
      * @expectedExceptionMessage session bound to PathBinding, we got "/foo/", but expected "/bar/"
+     *
+     * @return void
      */
     public function testPathBinding()
     {
@@ -119,62 +130,72 @@ class SessionTest extends PHPUnit_Framework_TestCase
             [
                 'PathBinding' => '/foo/',
             ],
-            $t
+            new Cookie([], $t)
         );
         $c = new Session(
             [
                 'PathBinding' => '/bar/',
             ],
-            $t
+            new Cookie([], $t)
         );
     }
 
     /**
      * @runInSeparateProcess
+     *
+     * @return void
      */
     public function testSetGet()
     {
         $t = new TestHeader();
-        $c = new Session([], $t);
+        $c = new Session([], new Cookie([], $t));
         $c->set('foo', 'bar');
         $this->assertSame('bar', $c->get('foo'));
     }
 
     /**
      * @runInSeparateProcess
-     * @expectedException \fkooman\SeCookie\Exception\SessionException
+     * @expectedException        \fkooman\SeCookie\Exception\SessionException
      * @expectedExceptionMessage key "foo" not available in session
+     *
+     * @return void
      */
     public function testGetMissing()
     {
         $t = new TestHeader();
-        $c = new Session([], $t);
+        $c = new Session([], new Cookie([], $t));
         $c->get('foo');
     }
 
     /**
      * @runInSeparateProcess
+     *
+     * @return void
      */
     public function testDelete()
     {
         $t = new TestHeader();
-        $c = new Session([], $t);
+        $c = new Session([], new Cookie([], $t));
         $c->set('foo', 'bar');
         $c->delete('foo');
     }
 
     /**
      * @runInSeparateProcess
+     *
+     * @return void
      */
     public function testDeleteMissing()
     {
         $t = new TestHeader();
-        $c = new Session([], $t);
+        $c = new Session([], new Cookie([], $t));
         $c->delete('foo');
     }
 
     /**
      * @runInSeparateProcess
+     *
+     * @return void
      */
     public function testExpiredCanary()
     {
@@ -183,7 +204,7 @@ class SessionTest extends PHPUnit_Framework_TestCase
             [
                 'CanaryExpiry' => 'PT01S',
             ],
-            $t
+            new Cookie([], $t)
         );
         $c->set('foo', 'bar');
         $firstId = $c->id();
@@ -192,7 +213,7 @@ class SessionTest extends PHPUnit_Framework_TestCase
             [
                 'CanaryExpiry' => 'PT01S',
             ],
-            $t
+            new Cookie([], $t)
         );
         $secondId = $c->id();
         $this->assertNotSame($firstId, $secondId);
@@ -201,6 +222,8 @@ class SessionTest extends PHPUnit_Framework_TestCase
 
     /**
      * @runInSeparateProcess
+     *
+     * @return void
      */
     public function testNotExpiredCanary()
     {
@@ -209,14 +232,14 @@ class SessionTest extends PHPUnit_Framework_TestCase
             [
                 'CanaryExpiry' => 'PT01S',
             ],
-            $t
+            new Cookie([], $t)
         );
         $firstId = $c->id();
         $c = new Session(
             [
                 'CanaryExpiry' => 'PT01S',
             ],
-            $t
+            new Cookie([], $t)
         );
         $secondId = $c->id();
         $this->assertSame($firstId, $secondId);
@@ -224,6 +247,8 @@ class SessionTest extends PHPUnit_Framework_TestCase
 
     /**
      * @runInSeparateProcess
+     *
+     * @return void
      */
     public function testExpiredSession()
     {
@@ -232,7 +257,7 @@ class SessionTest extends PHPUnit_Framework_TestCase
             [
                 'SessionExpiry' => 'PT01S',
             ],
-            $t
+            new Cookie([], $t)
         );
         $c->set('foo', 'bar');
         $this->assertTrue($c->has('foo'));
@@ -241,18 +266,20 @@ class SessionTest extends PHPUnit_Framework_TestCase
             [
                 'SessionExpiry' => 'PT01S',
             ],
-            $t
+            new Cookie([], $t)
         );
         $this->assertFalse($c->has('foo'));
     }
 
     /**
      * @runInSeparateProcess
+     *
+     * @return void
      */
     public function testDestroy()
     {
         $t = new TestHeader();
-        $c = new Session([], $t);
+        $c = new Session([], new Cookie([], $t));
         $firstId = $c->id();
         $c->destroy();
         $secondId = $c->id();
