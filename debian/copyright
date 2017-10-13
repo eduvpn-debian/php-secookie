@@ -1,14 +1,13 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: php-secookie
-Source: <url://example.com>
+Source: https://github.com/fkooman/php-secookie
 
 Files: *
-Copyright: <years> <put author's name and email here>
-           <years> <likewise for another author>
+Copyright:  2016, 2017 François Kooman <fkooman@tuxed.net>
 License: MIT
 
 Files: debian/*
-Copyright: 2017 Gijs Molenaar <Gijs Molenaar (launchpad ppa build key) <gijs@pythonic.nl>>
+Copyright: 2017 Gijs Molenaar <gijs@pythonic.nl>
 License: MIT
 
 License: MIT
@@ -29,8 +28,3 @@ License: MIT
  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-# Please also look if there are files or directories which have a
-# different copyright/license attached and list them here.
-# Please avoid picking licenses with terms that are more restrictive than the
-# packaged work, as it may make Debian's contributions unacceptable upstream.
